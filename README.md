@@ -17,7 +17,7 @@
 
 ## 📸 Screenshots
 
-<img src="Screenshots/Screenshot-1.png" width="250" alt="Screenshot-1"> <img src="Screenshots/Screenshot-2.png" width="250" alt="Screenshot-2">
+<img src="Screenshots/Screenshot-1.png" width="250" alt="Screenshot-1"> <img src="Screenshots/Screenshot-2.png" width="250" alt="Screenshot-2">  <img src="Screenshots/Screenshot-7.png" width="250" alt="Select any option to continue"> 
 
 
 ## Results Display
