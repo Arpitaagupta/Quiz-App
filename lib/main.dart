@@ -5,8 +5,10 @@ import 'screens/home_screens.dart';
 import './models/db_connection.dart';
 
 //run the main method
+
 void main() {
   var db = DBconnect();
+  db.fetchQuestions();
   db.addQuestion(Question(
       id: '20',
       title:
