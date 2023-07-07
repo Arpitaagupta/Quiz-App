@@ -9,7 +9,7 @@ import './models/db_connection.dart';
 void main() {
   var db = DBconnect();
   db.fetchQuestions();
-  db.addQuestion(Question(
+  /*  db.addQuestion(Question(
       id: '20',
       title:
           'Alluri Sitaram Raju was a tribal freedom fighter from which state of India?',
@@ -18,7 +18,7 @@ void main() {
         'Maharashtra': false,
         'Andhra Pradesh': true,
         'Gujurat': false,
-      }));
+      })); */
   //runApp method
   runApp(
     const MyApp(),
