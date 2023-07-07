@@ -20,8 +20,21 @@ class DBconnect {
     http.get(url).then((response) {
       // the then method returns a response
       //to whats inside we have to decode it first
-      var data = json.decode(response.body);
-      print(data);
+      var data = json.decode(response.body) as Map<String, dynamic>;
+      List<Question> newQuestions = [];
+
+      data.forEach(
+        (key, value) {
+          var newQuestion = Question(
+            id: key, //the encrypted key/title given to data
+            title: value['title'], //title of the question
+            options: Map.castFrom(value['options']), //options of the question
+          );
+          //add to new questions
+          newQuestions.add(newQuestion);
+        },
+      );
+      print(newQuestions);
     });
   }
 }
