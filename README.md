@@ -50,7 +50,7 @@
 
 
 
-<a href="https://drive.google.com/file/d/1DaNZZD7dLgCjr7sJ7k5RtD5g22FKs3RV/view?usp=sharing" target="_blank"><img src="https://png.pngtree.com/png-vector/20220525/ourmid/pngtree-click-here-yellow-png-image_4730180.png" alt="Buy Me A Coffee" height="40" width="100" style="border-radius:1px" />
+<a href="https://drive.google.com/file/d/1DaNZZD7dLgCjr7sJ7k5RtD5g22FKs3RV/view?usp=sharing" target="_blank"><img src="Screenshots/click_here.png" alt="Buy Me A Coffee" height="40" width="100" style="border-radius:1px" />
 </p>
 
 ## 👉 Prerequisites
