@@ -48,9 +48,9 @@
 
 **Description:** This screenshot showcases the result screen when the user scores less than half of the total points. The score is displayed inside a red color circle, representing a below-average performance. The message "Try Again!😫" is presented below the score, motivating the user to retake the quiz and strive for a better score.
 
-## [Click here to view demonstration](https://drive.google.com/file/d/1DaNZZD7dLgCjr7sJ7k5RtD5g22FKs3RV/view?usp=sharing)
 
-<a href="https://drive.google.com/file/d/1DaNZZD7dLgCjr7sJ7k5RtD5g22FKs3RV/view?usp=sharing" target="_blank"><img src="https://png.pngtree.com/png-vector/20220525/ourmid/pngtree-click-here-yellow-png-image_4730180.png" alt="Buy Me A Coffee" height="23" width="100" style="border-radius:1px" />
+
+<a href="https://drive.google.com/file/d/1DaNZZD7dLgCjr7sJ7k5RtD5g22FKs3RV/view?usp=sharing" target="_blank"><img src="https://png.pngtree.com/png-vector/20220525/ourmid/pngtree-click-here-yellow-png-image_4730180.png" alt="Buy Me A Coffee" height="40" width="100" style="border-radius:1px" />
 </p>
 
 ## 👉 Prerequisites
