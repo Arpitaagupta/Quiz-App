@@ -6,6 +6,7 @@ import '../widgets/questions_widgets.dart'; //the question widget
 import '../widgets/next_button.dart';
 import '../widgets/option_card.dart';
 import '../widgets/result_box.dart';
+import '../models/db_connection.dart';
 
 //Creating the HomeScreen widget
 //Stateful Widget is used because it is going to be our parent widget
@@ -18,7 +19,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Question> _questions = [
+  //create an object for DBconnect
+  var db = DBconnect();
+  late Future _questions;
+  Future<List<Question>> getData() async {
+    return db.fetchQuestions();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _questions = getData();
+    super.initState();
+  }
+
+  /* List<Question> _questions = [
     Question(
       id: '10',
       title: 'Which is the largest planet in solar system ?',
@@ -120,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     ),
   ];
-
+ */
   //creating an index to loop through questions
   int index = 0;
   //create a score variable
@@ -196,69 +211,75 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //use the future builder widget
+
     //chsnge the background
 
-    return Scaffold(
-      backgroundColor: background,
-      appBar: AppBar(
-        title: const Text('Quiz App'),
-        backgroundColor: skyBlueColor,
-        shadowColor: Colors.transparent,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Text(
-              'Score : $score',
-              style: const TextStyle(fontSize: 18),
-            ),
-          ),
-        ],
-      ),
-      body: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          children: [
-            //adding QuestionsWidget here,
-            QuestionWidget(
-              indexAction: index, //currently at 0.
-              question: _questions[index]
-                  .title, //means the first question in the list
-              totalQuestions: _questions.length, //total length of the list
-            ),
-            const Divider(
-              color: neutral,
-            ),
-            //add some space,
-            const SizedBox(height: 25.0),
-            for (int i = 0; i < _questions[index].options.length; i++)
-              GestureDetector(
-                onTap: () => checkAnswerAndUpdate(
-                    _questions[index].options.values.toList()[i]),
-                child: OptionCard(
-                  option: _questions[index].options.keys.toList()[i],
-                  //we need to check if the answer is correct or not,
-
-                  color: isPressed
-                      ? _questions[index].options.values.toList()[i] == true
-                          ? correct
-                          : incorrect
-                      : neutral,
-                  // onTap: changeColor,
-                ),
+    return FutureBuilder(
+      future: _questions as Future<List<Question>>,
+      builder: (ctx, snapshot) {},
+      child: Scaffold(
+        backgroundColor: background,
+        appBar: AppBar(
+          title: const Text('Quiz App'),
+          backgroundColor: skyBlueColor,
+          shadowColor: Colors.transparent,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                'Score : $score',
+                style: const TextStyle(fontSize: 18),
               ),
+            ),
           ],
         ),
-      ),
+        body: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            children: [
+              //adding QuestionsWidget here,
+              QuestionWidget(
+                indexAction: index, //currently at 0.
+                question: _questions[index]
+                    .title, //means the first question in the list
+                totalQuestions: _questions.length, //total length of the list
+              ),
+              const Divider(
+                color: neutral,
+              ),
+              //add some space,
+              const SizedBox(height: 25.0),
+              for (int i = 0; i < _questions[index].options.length; i++)
+                GestureDetector(
+                  onTap: () => checkAnswerAndUpdate(
+                      _questions[index].options.values.toList()[i]),
+                  child: OptionCard(
+                    option: _questions[index].options.keys.toList()[i],
+                    //we need to check if the answer is correct or not,
 
-      //use the floating action button,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: NextButton(
-          nextQuestion: nextQuestion, //the above function
+                    color: isPressed
+                        ? _questions[index].options.values.toList()[i] == true
+                            ? correct
+                            : incorrect
+                        : neutral,
+                    // onTap: changeColor,
+                  ),
+                ),
+            ],
+          ),
         ),
+
+        //use the floating action button,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: NextButton(
+            nextQuestion: nextQuestion, //the above function
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

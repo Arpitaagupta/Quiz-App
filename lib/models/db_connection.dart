@@ -15,9 +15,9 @@ class DBconnect {
   }
 
 //fetch the data from data base
-  Future<void> fetchQuestions() async {
+  Future<List<Question>> fetchQuestions() async {
     //we got the data from just using this. now let us print to se what we got
-    http.get(url).then((response) {
+    return http.get(url).then((response) {
       // the then method returns a response
       //to whats inside we have to decode it first
       var data = json.decode(response.body) as Map<String, dynamic>;
@@ -34,7 +34,7 @@ class DBconnect {
           newQuestions.add(newQuestion);
         },
       );
-      print(newQuestions);
+      return newQuestions;
     });
   }
 }
