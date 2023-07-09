@@ -53,6 +53,16 @@
 <a href="https://drive.google.com/file/d/1DaNZZD7dLgCjr7sJ7k5RtD5g22FKs3RV/view?usp=sharing" target="_blank"><img src="Screenshots/click_here_new.png" alt="Video-Quiz App" height="70" width="200" style="border-radius:1px" />
 </p>
 
+
+## <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/768px-Google-flutter-logo.svg.png?20210518211228" width="150" alt=" Flutter "> Frontend: Using Flutter Framework
+
+The frontend of this application is built using the Flutter framework, a popular UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase. Flutter offers a rich set of pre-designed widgets and tools that make it easy to create beautiful and responsive user interfaces. With its hot-reload feature, developers can see the changes in real-time, enabling fast and efficient development.
+
+## <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Firebase_Logo.png" width="150" alt=" Firebase"> Backend: Firebase
+
+The backend of this application is powered by Firebase, a comprehensive development platform provided by Google. Firebase offers a wide range of services and tools that simplify the development of serverless applications. In this app, Firebase is used to handle user authentication, store and retrieve quiz data, and track user scores. With its real-time database and robust authentication system, Firebase provides a reliable and scalable backend infrastructure for the Basic Quiz App.
+
+
 ## 👉 Prerequisites
 
 Before running this project, make sure you have the following prerequisites set up on your system:
