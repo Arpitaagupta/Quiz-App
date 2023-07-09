@@ -54,11 +54,11 @@
 </p>
 
 
-## <img src="Media/flutter.png" width="50" alt=" Flutter "> Frontend: Using Flutter Framework
+## <img src="Media/flutter.png" heighth="40" alt=" Flutter "> Frontend: Using Flutter Framework
 
 The frontend of this application is built using the Flutter framework, a popular UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase. Flutter offers a rich set of pre-designed widgets and tools that make it easy to create beautiful and responsive user interfaces. With its hot-reload feature, developers can see the changes in real-time, enabling fast and efficient development.
 
-## <img src="Media/firebase.png" width="50" alt=" Firebase"> Backend: Firebase
+## <img src="Media/firebase.png" height="40" alt=" Firebase"> Backend: Firebase
 
 The backend of this application is powered by Firebase, a comprehensive development platform provided by Google. Firebase offers a wide range of services and tools that simplify the development of serverless applications. In this app, Firebase is used to handle user authentication, store and retrieve quiz data, and track user scores. With its real-time database and robust authentication system, Firebase provides a reliable and scalable backend infrastructure for the Basic Quiz App.
 
