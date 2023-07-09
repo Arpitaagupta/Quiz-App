@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    //  implement initState
     _questions = getData();
     super.initState();
   }
@@ -146,8 +146,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isAlreadySelected = false;
 
   //create a function to display next question
-  void nextQuestion() {
-    if (index == _questions.length - 1) {
+  void nextQuestion(int questionLength) {
+    if (index == questionLength - 1) {
       //this is the block where question ends
       showDialog(
           context: context,
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
               false, //this will disable the dismiss function on clicking outside of box
           builder: (ctx) => ResultBox(
                 result: score, //total points the user got
-                questionLength: _questions.length, //out of how many questions
+                questionLength: questionLength, //out of how many questions
                 onPressed: startOver,
               ));
     } else {
@@ -213,73 +213,116 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     //use the future builder widget
 
-    //chsnge the background
+    //change the background
 
     return FutureBuilder(
       future: _questions as Future<List<Question>>,
-      builder: (ctx, snapshot) {},
-      child: Scaffold(
-        backgroundColor: background,
-        appBar: AppBar(
-          title: const Text('Quiz App'),
-          backgroundColor: skyBlueColor,
-          shadowColor: Colors.transparent,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Text(
-                'Score : $score',
-                style: const TextStyle(fontSize: 18),
-              ),
-            ),
-          ],
-        ),
-        body: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            children: [
-              //adding QuestionsWidget here,
-              QuestionWidget(
-                indexAction: index, //currently at 0.
-                question: _questions[index]
-                    .title, //means the first question in the list
-                totalQuestions: _questions.length, //total length of the list
-              ),
-              const Divider(
-                color: neutral,
-              ),
-              //add some space,
-              const SizedBox(height: 25.0),
-              for (int i = 0; i < _questions[index].options.length; i++)
-                GestureDetector(
-                  onTap: () => checkAnswerAndUpdate(
-                      _questions[index].options.values.toList()[i]),
-                  child: OptionCard(
-                    option: _questions[index].options.keys.toList()[i],
-                    //we need to check if the answer is correct or not,
-
-                    color: isPressed
-                        ? _questions[index].options.values.toList()[i] == true
-                            ? correct
-                            : incorrect
-                        : neutral,
-                    // onTap: changeColor,
+      builder: (ctx, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('${snapshot.error}'),
+            );
+          } else if (snapshot.hasData) {
+            var extractedData = snapshot.data as List<Question>;
+            return Scaffold(
+              backgroundColor: background,
+              appBar: AppBar(
+                title: const Text('Quiz App'),
+                backgroundColor: skyBlueColor,
+                shadowColor: Colors.transparent,
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Text(
+                      'Score : $score',
+                      style: const TextStyle(fontSize: 18),
+                    ),
                   ),
-                ),
-            ],
-          ),
-        ),
+                ],
+              ),
+              body: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  children: [
+                    //adding QuestionsWidget here,
+                    QuestionWidget(
+                      indexAction: index, //currently at 0.
+                      question: extractedData[index]
+                          .title, //means the first question in the list
+                      totalQuestions:
+                          extractedData.length, //total length of the list
+                    ),
+                    const Divider(
+                      color: neutral,
+                    ),
+                    //add some space,
+                    const SizedBox(height: 25.0),
+                    for (int i = 0;
+                        i < extractedData[index].options.length;
+                        i++)
+                      GestureDetector(
+                        onTap: () => checkAnswerAndUpdate(
+                            extractedData[index].options.values.toList()[i]),
+                        child: OptionCard(
+                          option: extractedData[index].options.keys.toList()[i],
+                          //we need to check if the answer is correct or not,
 
-        //use the floating action button,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: NextButton(
-            nextQuestion: nextQuestion, //the above function
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      ),
+                          color: isPressed
+                              ? extractedData[index]
+                                          .options
+                                          .values
+                                          .toList()[i] ==
+                                      true
+                                  ? correct
+                                  : incorrect
+                              : neutral,
+                          // onTap: changeColor,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+
+              //use the floating action button,
+              floatingActionButton: GestureDetector(
+                onTap: () => nextQuestion(extractedData.length),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: NextButton(),
+                ),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+            );
+          }
+        } else {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CircularProgressIndicator(),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  'Please wait while questions are loading..',
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    decoration: TextDecoration.none,
+                    fontSize: 14.0,
+                  ),
+                )
+              ],
+            ),
+          );
+        }
+        return const Center(
+          child: Text('No data'),
+        );
+      },
     );
   }
 }

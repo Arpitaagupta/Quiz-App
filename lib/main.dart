@@ -1,14 +1,14 @@
 //import the material package
 import 'package:flutter/material.dart';
-import 'package:quizz_app/models/question_models.dart';
+// import 'package:quizz_app/models/question_models.dart';
 import 'screens/home_screens.dart';
-import './models/db_connection.dart';
+// import './models/db_connection.dart';
 
 //run the main method
 
 void main() {
-  var db = DBconnect();
-  db.fetchQuestions();
+  // var db = DBconnect();
+  // db.fetchQuestions();
   /*  db.addQuestion(Question(
       id: '20',
       title:
