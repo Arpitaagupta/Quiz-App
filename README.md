@@ -54,7 +54,7 @@
 </p>
 
 
-## <img src="Media/flutter.png" heighth="40" alt=" Flutter "> Frontend: Using Flutter Framework
+## <img src="Media/flutter.png" width="40" alt=" Flutter "> Frontend: Using Flutter Framework
 
 The frontend of this application is built using the Flutter framework, a popular UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase. Flutter offers a rich set of pre-designed widgets and tools that make it easy to create beautiful and responsive user interfaces. With its hot-reload feature, developers can see the changes in real-time, enabling fast and efficient development.
 
